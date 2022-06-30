@@ -32,6 +32,7 @@ steps:
       - ls
       - pwd
       - cd /home
+      - mkdir /home/.kube
       - ls -la
       - cd .kube
       - ls -la
