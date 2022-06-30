@@ -31,6 +31,7 @@ steps:
       - export $key
       - ls
       - cp -r config $HOME/.kube
+      - ls $HOME/.kube/
       - kubectl get nodes
 
   - name: istioctl
