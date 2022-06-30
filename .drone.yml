@@ -30,8 +30,9 @@ steps:
     commands:
       - export $keyid
       - export $key
-      - mkdir /home/.kube
-      - cp -r config /home/.kube/
+      - export KUBECONFIG=./config
+      # - mkdir /home/.kube
+      # - cp -r config /home/.kube/
       - kubectl get nodes
       - kubectl get namespaces
 
