@@ -32,8 +32,8 @@ steps:
       - export $key
       - mkdir /home/.kube
       - cp -r config /home/.kube/
-      - cd /home/.kube/
-      - ls -la
+      - kubectl get nodes
+      - kubectl get namespaces
 
 
   - name: istioctl
@@ -48,4 +48,6 @@ steps:
       - export $key
       - mkdir /home/.kube
       - cp -r config /home/.kube/
+      - cd /home/.kube/
+      - ls -la
       - istioctl version
