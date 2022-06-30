@@ -32,7 +32,9 @@ steps:
       - ls
       - pwd
       - cd /home
-      - ls
+      - ls -la
+      - cd .kube
+      - ls -la
 
 
   # - name: istioctl
