@@ -29,7 +29,7 @@ steps:
     commands:
       - export $keyid
       - export $key
-      - cp -r config HOME/.kube/
+      - cp -r config $HOME/.kube/
       - kubectl get nodes
 
   - name: istioctl
@@ -42,5 +42,5 @@ steps:
     commands:
       - export $keyid
       - export $key
-      - cp -r config HOME/.kube/
+      - cp -r config $HOME/.kube/
       - istioctl version
