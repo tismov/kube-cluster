@@ -18,8 +18,21 @@ steps:
       - kops validate cluster --state=s3://kube-tismov-bt --name=cluster.turali7v.click --wait 10m
       - cat $HOME/.kube/config
       - cat $HOME/.kube/config > config
-      - ls -l
-
+      
+  - name: istioctl
+    image: turik207/istio:1.14
+    environment:
+      keyid:
+        from_secret: keyid
+      key:
+        from_secret: key
+    commands:
+      - export $keyid
+      - export $key
+      - export KUBECONFIG=./config
+      - istioctl version
+      - istioctl install -y
+      
   - name: kubectl
     image: turik207/kubectl:1.23
     environment:
@@ -31,24 +44,8 @@ steps:
       - export $keyid
       - export $key
       - export KUBECONFIG=./config
-      # - mkdir /home/.kube
-      # - cp -r config /home/.kube/
+      - kubectl label namespace default istio-injection=enabled
       - kubectl get nodes
       - kubectl get namespaces
 
 
-  - name: istioctl
-    image: turik207/istio:1.14
-    environment:
-      keyid:
-        from_secret: keyid
-      key:
-        from_secret: key
-    commands:
-      - export $keyid
-      - export $key
-      - mkdir /home/.kube
-      - cp -r config /home/.kube/
-      - cd /home/.kube/
-      - ls -la
-      - istioctl version
