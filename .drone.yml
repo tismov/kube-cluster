@@ -14,6 +14,7 @@ steps:
       - export $keyid
       - export $key
       - kops create cluster --name cluster.turali7v.click --zones eu-central-1a --state s3://kube-tismov-bt --yes
+      - sleep 30
       - kops validate cluster --state=s3://kube-tismov-bt --name=cluster.turali7v.click --wait 10m
       - cat $HOME/.kube/config
       - cat $HOME/.kube/config > config
