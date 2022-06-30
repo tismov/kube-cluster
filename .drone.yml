@@ -31,7 +31,7 @@ steps:
       - export $key
       - mkdir /home/.kube
       - cp -r config /home/.kube/
-      - cd .kube
+      - cd /home/.kube/
       - ls -la
 
 
