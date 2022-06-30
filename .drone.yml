@@ -33,20 +33,17 @@ steps:
       - pwd
       - cd $HOME
       - ls
-      - cp -r config /.kube
-      - cd /.kube
-      - ls 
-      - kubectl get nodes
 
-  - name: istioctl
-    image: turik207/istio:1.14
-    environment:
-      keyid:
-        from_secret: keyid
-      key:
-        from_secret: key
-    commands:
-      - export $keyid
-      - export $key
-      - cp -r config $HOME/.kube/
-      - istioctl version
+
+  # - name: istioctl
+  #   image: turik207/istio:1.14
+  #   environment:
+  #     keyid:
+  #       from_secret: keyid
+  #     key:
+  #       from_secret: key
+  #   commands:
+  #     - export $keyid
+  #     - export $key
+  #     - cp -r config $HOME/.kube/
+  #     - istioctl version
