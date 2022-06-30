@@ -30,8 +30,9 @@ steps:
       - export $keyid
       - export $key
       - ls
-      - cp -r config $HOME/.kube
-      - cd $HOME/.kube
+      - pwd
+      - cp -r config /.kube
+      - cd /.kube
       - ls 
       - kubectl get nodes
 
