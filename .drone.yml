@@ -1,0 +1,46 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:      
+  - name: kops_infra
+    image: turik207/kops:1.23.2.7
+    environment:
+      keyid:
+        from_secret: keyid
+      key:
+        from_secret: key
+    commands:
+      - export $keyid
+      - export $key
+      - kops create cluster --name cluster.turali7v.click --zones eu-central-1a --state s3://kube-tismov-bt --yes
+      - kops validate cluster --state=s3://kube-tismov-bt --wait 10m
+      - cat $HOME/.kube/config
+      - cat $HOME/.kube/config > config
+      - ls -l
+
+  - name: kubectl
+    image: turik207/kubectl:1.23
+    environment:
+      keyid:
+        from_secret: keyid
+      key:
+        from_secret: key
+    commands:
+      - export $keyid
+      - export $key
+      - cp -r config HOME/.kube/
+      - kubectl get nodes
+
+  - name: istioctl
+    image: turik207/istio:1.14
+    environment:
+      keyid:
+        from_secret: keyid
+      key:
+        from_secret: key
+    commands:
+      - export $keyid
+      - export $key
+      - cp -r config HOME/.kube/
+      - istioctl version

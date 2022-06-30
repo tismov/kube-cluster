@@ -1,0 +1,17 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name  : my-cluster
+  region: eu-central-1
+
+
+
+nodeGroups:
+  - name             : node1
+    instanceType     : t3.small
+    desiredCapacity  : 1
+  - name             : node2
+    instanceType     : t3.small
+    desiredCapacity  : 1
+  
