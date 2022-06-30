@@ -3,21 +3,21 @@ type: docker
 name: default
 
 steps:      
-  - name: kops_infra
-    image: turik207/kops:1.23.2.7
-    environment:
-      keyid:
-        from_secret: keyid
-      key:
-        from_secret: key
-    commands:
-      - export $keyid
-      - export $key
-      - kops create cluster --name cluster.turali7v.click --zones eu-central-1a --state s3://kube-tismov-bt --yes
-      - kops validate cluster --state=s3://kube-tismov-bt --wait 10m
-      - cat $HOME/.kube/config
-      - cat $HOME/.kube/config > config
-      - ls -l
+  # - name: kops_infra
+  #   image: turik207/kops:1.23.2.7
+  #   environment:
+  #     keyid:
+  #       from_secret: keyid
+  #     key:
+  #       from_secret: key
+  #   commands:
+  #     - export $keyid
+  #     - export $key
+  #     - kops create cluster --name cluster.turali7v.click --zones eu-central-1a --state s3://kube-tismov-bt --yes
+  #     - kops validate cluster --state=s3://kube-tismov-bt --name=cluster.turali7v.click --wait 10m
+  #     - cat $HOME/.kube/config
+  #     - cat $HOME/.kube/config > config
+  #     - ls -l
 
   - name: kubectl
     image: turik207/kubectl:1.23
