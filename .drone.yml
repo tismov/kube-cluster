@@ -48,4 +48,15 @@ steps:
       - kubectl get nodes
       - kubectl get namespaces
 
-
+  - name: copy configfile s3
+    image: amazon/aws-cli
+    environment:
+      accesskey:
+        from_secret: seckeyid
+      secretkey:
+        from_secret: seckey
+    commands:
+      - export $accesskey
+      - export $secretkey
+      - aws --version
+      - aws s3 cp config s3://k8s-kubeconfig-i7v/
